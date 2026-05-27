@@ -45,10 +45,16 @@ app.get('/', (req: Request, res: Response) => {
 })
 app.post('/', async (req: Request, res: Response) => {
     // console.log(req.body);
-    const body = req.body;
+    const { name, email, password, age } = req.body;
+
+    const result = await pool.query(`
+        INSERT INTO users(name,email,password,age) VALUES($1,$2,$3,$4) RETURNING *
+        `, [name, email, password, age])
     res.status(201).json({
         message: "created successfully",
-        data: body
+        data: result.rows[0]
+            
+        
     })
 })
 
