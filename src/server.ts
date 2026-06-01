@@ -43,7 +43,7 @@ app.get('/', (req: Request, res: Response) => {
         "author": "Ahmed"
     })
 })
-app.post('/', async (req: Request, res: Response) => {
+app.post('/api/users', async (req: Request, res: Response) => {
     // console.log(req.body);
     const { name, email, password, age } = req.body;
 
@@ -52,15 +52,38 @@ app.post('/', async (req: Request, res: Response) => {
         INSERT INTO users(name,email,password,age) VALUES($1,$2,$3,$4) RETURNING *
         `, [name, email, password, age])
         res.status(201).json({
+            success: true,
             message: "User created successfully!!",
             data: result.rows[0]
         })
 
     } catch (error: any) {
         res.status(500).json({
+            success: false,
             message: error.message,
             error: error
         })
+    }
+})
+
+app.get('/api/users', async (req: Request, res: Response) => {
+    try {
+        const result = await pool.query(`
+            SELECT * FROM users
+            `)
+        res.status(200).json({
+            success: true,
+            message: 'users retrieved successfully!!!',
+            data: result.rows
+        })
+
+    } catch (error: any) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+            error: error
+        })
+
     }
 })
 
