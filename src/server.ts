@@ -1,14 +1,15 @@
 import express, { type Application, type Request, type Response } from "express"
 import dotenv from "dotenv";
 import { Pool } from "pg"
+import config from "./config/config";
 const app: Application = express()
-const port = 5000
+const port = config.port
 dotenv.config();
 
 app.use(express.json());
 app.use(express.text());
 app.use(express.urlencoded({ extended: true }))
-const databaseUrl = process.env.DATABASE_URL
+const databaseUrl = config.DataBase_Url
 const pool = new Pool({
     connectionString: databaseUrl
 });
@@ -164,7 +165,7 @@ app.delete('/api/users/:id', async (req: Request, res: Response) => {
         if ((await result).rowCount === 0) {
             res.status(404).json({
                 success: false,
-                message: 'User Not Found!!!',                
+                message: 'User Not Found!!!',
             })
         }
 
