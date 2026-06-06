@@ -5,3 +5,10 @@ export interface Iuser {
     age: number,
     is_active?: boolean
 }
+
+export interface IupdateUser {
+    name?: string,
+    password?: string,
+    age?: number,
+    is_active?: boolean
+}
