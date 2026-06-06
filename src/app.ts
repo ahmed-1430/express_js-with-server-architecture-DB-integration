@@ -1,13 +1,14 @@
 import express, { type Application, type Request, type Response } from "express"
 import dotenv from "dotenv";
 import { pool } from "./db/init_db";
+import { userRoute } from "./modules/user/user.route";
 const app: Application = express()
 
 app.use(express.json());
 app.use(express.text());
 app.use(express.urlencoded({ extended: true }))
 
-
+app.use('/api/users', userRoute)
 
 app.get('/', (req: Request, res: Response) => {
     res.status(200).json({
@@ -15,28 +16,7 @@ app.get('/', (req: Request, res: Response) => {
         "author": "Ahmed"
     })
 })
-app.post('/api/users', async (req: Request, res: Response) => {
-    // console.log(req.body);
-    const { name, email, password, age } = req.body;
 
-    try {
-        const result = await pool.query(`
-        INSERT INTO users(name,email,password,age) VALUES($1,$2,$3,$4) RETURNING *
-        `, [name, email, password, age])
-        res.status(201).json({
-            success: true,
-            message: "User created successfully!!",
-            data: result.rows[0]
-        })
-
-    } catch (error: any) {
-        res.status(500).json({
-            success: false,
-            message: error.message,
-            error: error
-        })
-    }
-})
 
 app.get('/api/users', async (req: Request, res: Response) => {
     try {
