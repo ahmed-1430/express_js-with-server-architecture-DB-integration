@@ -10,6 +10,14 @@ const createUserIntoDb = async (payload: Iuser) => {
 
 }
 
+const getUserFromDb = async () => {
+    const result = await pool.query(`
+            SELECT * FROM users
+            `)
+    return result;
+}
+
 export const userService = {
-    createUserIntoDb
+    createUserIntoDb,
+    getUserFromDb
 }

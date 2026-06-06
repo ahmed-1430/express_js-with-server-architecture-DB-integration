@@ -8,7 +8,6 @@ app.use(express.json());
 app.use(express.text());
 app.use(express.urlencoded({ extended: true }))
 
-app.use('/api/users', userRoute)
 
 app.get('/', (req: Request, res: Response) => {
     res.status(200).json({
@@ -17,27 +16,9 @@ app.get('/', (req: Request, res: Response) => {
     })
 })
 
+app.use('/api/users', userRoute)
 
-app.get('/api/users', async (req: Request, res: Response) => {
-    try {
-        const result = await pool.query(`
-            SELECT * FROM users
-            `)
-        res.status(200).json({
-            success: true,
-            message: 'users retrieved successfully!!!',
-            data: result.rows
-        })
 
-    } catch (error: any) {
-        res.status(500).json({
-            success: false,
-            message: error.message,
-            error: error
-        })
-
-    }
-})
 
 app.get('/api/users/:id', async (req: Request, res: Response) => {
     const { id } = req.params
