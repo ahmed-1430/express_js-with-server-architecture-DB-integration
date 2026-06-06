@@ -26,7 +26,7 @@ const createUser = async (req: Request, res: Response) => {
 
 const getUser = async (req: Request, res: Response) => {
     try {
-       const result = await userService.getUserFromDb()
+        const result = await userService.getUserFromDb()
         res.status(200).json({
             success: true,
             message: 'users retrieved successfully!!!',
@@ -44,6 +44,37 @@ const getUser = async (req: Request, res: Response) => {
 }
 
 
+const getSingleUser =  async (req: Request, res: Response) => {
+        const { id } = req.params
+
+        try {
+            const result = await userService.getSingleUserFromDB(id as string)
+           
+            if (result.rows.length === 0) {
+                res.status(404).json({
+                    success: false,
+                    message: 'User Not Found!!!',
+                    data: {}
+                })
+                return
+            }
+            res.status(200).json({
+                success: true,
+                message: 'users retrieved successfully!!!',
+                data: result.rows[0]
+            })
+
+        } catch (error: any) {
+            res.status(500).json({
+                success: false,
+                message: error.message,
+                error: error
+            })
+        }
+    }
+
 export const userController = {
-    createUser
+    createUser,
+    getUser,
+    getSingleUser
 }

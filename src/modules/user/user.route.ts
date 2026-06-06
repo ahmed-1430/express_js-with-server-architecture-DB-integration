@@ -5,6 +5,8 @@ import { userController } from "./user.controller";
 const router = Router()
 router.post('/', userController.createUser)
 
-router.get('/api/users', )
+router.get('/', userController.getUser)
+
+router.get('/:id', userController.getSingleUser)
 
 export const userRoute = router;
