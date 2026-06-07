@@ -44,40 +44,40 @@ const getUser = async (req: Request, res: Response) => {
 }
 
 
-const getSingleUser =  async (req: Request, res: Response) => {
-        const { id } = req.params
+const getSingleUser = async (req: Request, res: Response) => {
+    const { id } = req.params
 
-        try {
-            const result = await userService.getSingleUserFromDB(id as string)
-           
-            if (result.rows.length === 0) {
-                res.status(404).json({
-                    success: false,
-                    message: 'User Not Found!!!',
-                    data: {}
-                })
-                return
-            }
-            res.status(200).json({
-                success: true,
-                message: 'users retrieved successfully!!!',
-                data: result.rows[0]
-            })
+    try {
+        const result = await userService.getSingleUserFromDB(id as string)
 
-        } catch (error: any) {
-            res.status(500).json({
+        if (result.rows.length === 0) {
+            res.status(404).json({
                 success: false,
-                message: error.message,
-                error: error
+                message: 'User Not Found!!!',
+                data: {}
             })
+            return
         }
-    }
+        res.status(200).json({
+            success: true,
+            message: 'users retrieved successfully!!!',
+            data: result.rows[0]
+        })
 
-    const updateUserInfo = async (req: Request, res: Response) => {
+    } catch (error: any) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+            error: error
+        })
+    }
+}
+
+const updateUserInfo = async (req: Request, res: Response) => {
     const { id } = req.params
     const { name, age, password, is_active } = req.body
     try {
-        const result = await userService.updateUserInfoToDB(req.body, id as string)        
+        const result = await userService.updateUserInfoToDB(req.body, id as string)
         if (result.rows.length === 0) {
             res.status(404).json({
                 success: false,
@@ -100,11 +100,42 @@ const getSingleUser =  async (req: Request, res: Response) => {
         })
     }
 
+    
 }
+
+const deleteUserInfo = async (req: Request, res: Response) => {
+        const { id } = req.params
+        try {
+            const result = await userService.deleteUserFromDB(id as string)
+            if ((await result).rowCount === 0) {
+                res.status(404).json({
+                    success: false,
+                    message: 'User Not Found!!!',
+                })
+                return;
+            }
+
+            res.status(200).json({
+                success: true,
+                message: 'user deleted successfully!!!',
+            })
+        } catch (error: any) {
+            res.status(500).json({
+                success: false,
+                message: error.message,
+                error: error
+            })
+
+        }
+    }
 
 export const userController = {
     createUser,
     getUser,
     getSingleUser,
-    updateUserInfo
+    updateUserInfo,
+    deleteUserInfo
+    
+    
+    
 }
