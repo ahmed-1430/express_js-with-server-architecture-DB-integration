@@ -17,7 +17,9 @@ const getUserFromDb = async () => {
     const result = await pool.query(`
             SELECT * FROM users
             `)
-    delete result.rows[0].password
+    if (result.rows[0]) {
+        delete result.rows[0].password
+    }
     return result;
 }
 
@@ -25,7 +27,9 @@ const getSingleUserFromDB = async (id: string) => {
     const result = await pool.query(`
             SELECT * FROM users WHERE id=$1             
             `, [id])
-    delete result.rows[0].password
+    if (result.rows[0]) {
+        delete result.rows[0].password
+    }
     return result;
 }
 
@@ -41,7 +45,9 @@ const updateUserInfoToDB = async (payload: IupdateUser, id: string) => {
         WHERE id=$5
         RETURNING *
         `, [name, age, password, is_active, id])
-    delete result.rows[0].password
+    if (result.rows[0]) {
+        delete result.rows[0].password
+    }
     return result;
 }
 

@@ -1,0 +1,14 @@
+
+Method -> GET, - Url: /, - Time: 1780953235993
+
+Method -> GET, - Url: /api/users, - Time: 1780953278525
+
+Method -> GET, - Url: /api/users/18, - Time: 1780953470185
+
+Method -> GET, - Url: /api/users/1, - Time: 1780953495393
+
+Method -> GET, - Url: /api/users/2, - Time: 1780953508794
+
+Method -> GET, - Url: /api/users/2, - Time: 1780953580443
+
+Method -> GET, - Url: /api/users/2, - Time: 1780953852074
