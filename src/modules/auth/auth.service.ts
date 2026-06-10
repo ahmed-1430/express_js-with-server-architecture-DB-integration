@@ -18,7 +18,7 @@ const loginUserIntoDB = async (payload: Iauth) => {
         throw new Error("Invalid Credentital!!!")
     }
     const matchPassword = await bcrypt.compare(password, user.password)
-    if(!matchPassword){
+    if (!matchPassword) {
         throw new Error("Invalid Credentital")
     }
 
@@ -26,11 +26,12 @@ const loginUserIntoDB = async (payload: Iauth) => {
         id: user.id,
         name: user.name,
         email: user.email,
-        is_active: user.is_active
+        is_active: user.is_active,
+        role: user.role
     }
     const secretKey = config.secret
-    const accessToken = jwt.sign(jwtPayload, secretKey as string, {expiresIn: "1d"})
-    return {accessToken};
+    const accessToken = jwt.sign(jwtPayload, secretKey as string, { expiresIn: "1d" })
+    return { accessToken };
 
 }
 

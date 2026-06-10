@@ -58,3 +58,25 @@ Method -> POST, - Url: /api/users, - Time: 1781474484521
 Method -> POST, - Url: /api/users, - Time: 1781474808399
 
 Method -> POST, - Url: /api/users, - Time: 1781474868327
+
+Method -> POST, - Url: /api/auth/login, - Time: 1781475662028
+
+Method -> GET, - Url: /api/users, - Time: 1781476463260
+
+Method -> GET, - Url: /favicon.ico, - Time: 1781476463357
+
+Method -> GET, - Url: /api/users, - Time: 1781478120586
+
+Method -> GET, - Url: /api/users, - Time: 1781478397967
+
+Method -> GET, - Url: /api/users, - Time: 1781478420370
+
+Method -> POST, - Url: /api/auth/login, - Time: 1781478452055
+
+Method -> POST, - Url: /api/auth/login, - Time: 1781478550528
+
+Method -> GET, - Url: /api/users, - Time: 1781478569798
+
+Method -> POST, - Url: /api/auth/login, - Time: 1781478638186
+
+Method -> GET, - Url: /api/users, - Time: 1781478676289

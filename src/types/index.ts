@@ -1,0 +1,7 @@
+export const USER_Role = {
+    admin: "admin",
+    agent: "agent",
+    user: "user"
+} as const
+
+export type ROLES = 'admin' | 'agent' | 'user';
