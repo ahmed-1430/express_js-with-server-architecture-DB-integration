@@ -52,3 +52,9 @@ Method -> GET, - Url: /api/users, - Time: 1781468859068
 Method -> GET, - Url: /api/users, - Time: 1781468886490
 
 Method -> GET, - Url: /api/users, - Time: 1781468906907
+
+Method -> POST, - Url: /api/users, - Time: 1781474484521
+
+Method -> POST, - Url: /api/users, - Time: 1781474808399
+
+Method -> POST, - Url: /api/users, - Time: 1781474868327
