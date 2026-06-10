@@ -5,11 +5,11 @@ import { initDB } from "./db/init_db";
 
 const port = config.port;
 
-const main = async ()=>{
+const main = async () => {
     await initDB();
 
     app.listen(port, () => {
-    console.log(`Example app running on port ${port}`);
-})
+        console.log(`Example app running on port ${port}`);
+    })
 }
 main()

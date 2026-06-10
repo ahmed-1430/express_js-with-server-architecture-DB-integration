@@ -12,3 +12,25 @@ Method -> GET, - Url: /api/users/2, - Time: 1780953508794
 Method -> GET, - Url: /api/users/2, - Time: 1780953580443
 
 Method -> GET, - Url: /api/users/2, - Time: 1780953852074
+
+Method -> GET, - Url: /, - Time: 1781462518978
+
+Method -> GET, - Url: /favicon.ico, - Time: 1781462519097
+
+Method -> GET, - Url: /api/users, - Time: 1781462527624
+
+Method -> POST, - Url: /api/auth/login, - Time: 1781466752024
+
+Method -> GET, - Url: /api/users, - Time: 1781466830794
+
+Method -> GET, - Url: /api/users, - Time: 1781466887998
+
+Method -> GET, - Url: /api/users, - Time: 1781466932483
+
+Method -> GET, - Url: /api/users, - Time: 1781467156215
+
+Method -> GET, - Url: /api/users, - Time: 1781467165024
+
+Method -> GET, - Url: /api/users, - Time: 1781467176419
+
+Method -> GET, - Url: /api/users, - Time: 1781467228553
