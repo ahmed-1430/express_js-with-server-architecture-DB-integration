@@ -30,8 +30,15 @@ const loginUserIntoDB = async (payload: Iauth) => {
         role: user.role
     }
     const secretKey = config.secret
+    const refresh_secret = config.refresh_secret
     const accessToken = jwt.sign(jwtPayload, secretKey as string, { expiresIn: "1d" })
-    return { accessToken };
+
+    const refreshToken = jwt.sign(jwtPayload, refresh_secret as string, { expiresIn: "30d" })
+
+
+
+
+    return { accessToken, refreshToken };
 
 }
 

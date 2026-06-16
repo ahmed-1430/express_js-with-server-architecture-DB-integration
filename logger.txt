@@ -80,3 +80,5 @@ Method -> GET, - Url: /api/users, - Time: 1781478569798
 Method -> POST, - Url: /api/auth/login, - Time: 1781478638186
 
 Method -> GET, - Url: /api/users, - Time: 1781478676289
+
+Method -> POST, - Url: /api/auth/login, - Time: 1781612003676
