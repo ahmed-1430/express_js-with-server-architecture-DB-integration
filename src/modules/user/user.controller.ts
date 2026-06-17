@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 import { pool } from "../../db/init_db";
 import { userService } from "./user.service";
+import sendResponse from "../../utility/sendResponse";
 
 
 const createUser = async (req: Request, res: Response) => {
@@ -9,14 +10,16 @@ const createUser = async (req: Request, res: Response) => {
 
     try {
         const result = await userService.createUserIntoDb(req.body)
-        res.status(201).json({
+        sendResponse(res, {
+            statusCode: 201,
             success: true,
             message: "User created successfully!!",
             data: result.rows[0]
         })
 
     } catch (error: any) {
-        res.status(500).json({
+        sendResponse(res, {
+            statusCode: 500,
             success: false,
             message: error.message,
             error: error
@@ -27,19 +30,20 @@ const createUser = async (req: Request, res: Response) => {
 const getUser = async (req: Request, res: Response) => {
     try {
         const result = await userService.getUserFromDb()
-        res.status(200).json({
+        sendResponse(res, {
+            statusCode: 200,
             success: true,
             message: 'users retrieved successfully!!!',
             data: result.rows
         })
 
     } catch (error: any) {
-        res.status(500).json({
+        sendResponse(res, {
+            statusCode: 500,
             success: false,
             message: error.message,
             error: error
         })
-
     }
 }
 
@@ -51,21 +55,23 @@ const getSingleUser = async (req: Request, res: Response) => {
         const result = await userService.getSingleUserFromDB(id as string)
 
         if (result.rows.length === 0) {
-            res.status(404).json({
+            sendResponse(res, {
+                statusCode: 404,
                 success: false,
                 message: 'User Not Found!!!',
                 data: {}
             })
             return
         }
-        res.status(200).json({
+        sendResponse(res, {
+            statusCode: 200,
             success: true,
             message: 'users retrieved successfully!!!',
             data: result.rows[0]
         })
-
     } catch (error: any) {
-        res.status(500).json({
+        sendResponse(res, {
+            statusCode: 500,
             success: false,
             message: error.message,
             error: error
@@ -79,21 +85,23 @@ const updateUserInfo = async (req: Request, res: Response) => {
     try {
         const result = await userService.updateUserInfoToDB(req.body, id as string)
         if (result.rows.length === 0) {
-            res.status(404).json({
+            sendResponse(res, {
+                statusCode: 404,
                 success: false,
                 message: 'User Not Found!!!',
                 data: {}
             })
             return;
         }
-        res.status(200).json({
+        sendResponse(res, {
+            statusCode: 200,
             success: true,
             message: 'user updated successfully!!!',
             data: result.rows[0]
         })
-
     } catch (error: any) {
-        res.status(500).json({
+        sendResponse(res, {
+            statusCode: 500,
             success: false,
             message: error.message,
             error: error
@@ -108,24 +116,25 @@ const deleteUserInfo = async (req: Request, res: Response) => {
     try {
         const result = await userService.deleteUserFromDB(id as string)
         if ((await result).rowCount === 0) {
-            res.status(404).json({
+            sendResponse(res, {
+                statusCode: 404,
                 success: false,
                 message: 'User Not Found!!!',
             })
             return;
         }
-
-        res.status(200).json({
+        sendResponse(res, {
+            statusCode: 200,
             success: true,
             message: 'user deleted successfully!!!',
         })
     } catch (error: any) {
-        res.status(500).json({
+        sendResponse(res, {
+            statusCode: 500,
             success: false,
             message: error.message,
             error: error
         })
-
     }
 }
 
