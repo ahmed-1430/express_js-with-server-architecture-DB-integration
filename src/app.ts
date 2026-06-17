@@ -4,7 +4,8 @@ import { profileRoute } from "./modules/profile/profile.route";
 import { authRoute } from "./modules/auth/auth.route";
 import logger from "./middleware/logger";
 import cookieParser from 'cookie-parser'
-import dotenv from 'dotenv';
+import cors from 'cors'
+import globallErrorHandler from "./middleware/globallErrorHandler";
 
 const app: Application = express()
 
@@ -12,8 +13,13 @@ const app: Application = express()
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.text());
-app.use(express.urlencoded({ extended: true }))
-app.use(logger)
+app.use(express.urlencoded({ extended: true }));
+app.use(logger);
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200
+}
+app.use(cors())
 
 
 app.get('/', (req: Request, res: Response) => {
@@ -33,7 +39,8 @@ app.use('/api/auth', authRoute)
 
 
 
-
+// Global Error Handling Middleware
+app.use(globallErrorHandler);
 
 
 

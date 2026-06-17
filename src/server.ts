@@ -1,8 +1,6 @@
-import dotenv from 'dotenv';
 import app from "./app"
 import config from "./config/config"
 import { initDB } from "./db/init_db";
-dotenv.config();
 
 
 const port = config.port;
